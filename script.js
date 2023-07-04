@@ -66,20 +66,27 @@ function studentsData(){
                         })
 
                     })
-}
-add.addEventListener("click",function(e){
-    const table = document.getElementById("table");
-    table.innerHTML = `  <tr>
-                        <th>Id</th>
-                        <th>Student Name</th>
-                        <th>Email</th>
-                        <th>Age</th>
-                        <th>GPA</th>
-                        <th>Degree</th>
-                             </tr>`;
-    if(add.innerText === "Add Student"){
-        students.push({ ID: id, name: name.value, age: age.value, grade: gpa.value, degree: degree.value, email: email.value });
-        studentsData();
+                }
+    add.addEventListener("click",function(e){
+        
+        const table = document.getElementById("table");
+        table.innerHTML = `  <tr>
+        <th>Id</th>
+        <th>Student Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>GPA</th>
+        <th>Degree</th>
+        </tr>`;
+        if(add.innerText === "Add Student"){
+            if(name.value!=="" && email.value!=="" && age.value!=="" && gpa.value!=="" && degree.value!==""){
+                console.log("hello")
+                students.push({ ID: id, name: name.value, age: age.value, grade: gpa.value, degree: degree.value, email: email.value });
+            }else{
+                alert("Fill All Inputs");
+            }
+            studentsData();
+            
     }
     if(add.innerText === "Edit Student" ){
         students[editCount].name =   name.value;
@@ -94,20 +101,20 @@ add.addEventListener("click",function(e){
         e.target.style.color = "black";
         e.target.innerText = "Add Student";
 
-        name.value   = "";
-        email.value  = "";
-        age.value    = "";
-        gpa.value    = "";
-        degree.value = "";
-
+        
     }
+    name.value   = "";
+    email.value  = "";
+    age.value    = "";
+    gpa.value    = "";
+    degree.value = "";
 })
 
 search.addEventListener("keyup",function(e){
     let searchedValue = e.target.value;
     
     let filteredStudent = students.filter(function(e){
-            if(e.name.toLowerCase().includes(searchedValue.toLowerCase()) || e.email.toLowerCase().includes(searchedValue.toLowerCase()) || e.degree.toLowerCase().includes(searchedValue.toLowerCase())){
+        if(e.name.toLowerCase().includes(searchedValue.toLowerCase()) || e.email.toLowerCase().includes(searchedValue.toLowerCase()) || e.degree.toLowerCase().includes(searchedValue.toLowerCase())){
                 return true;
             }
             return false;
