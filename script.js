@@ -5,7 +5,7 @@ let gpa = document.getElementById("gpa");
 let age = document.getElementById("age");
 let degree = document.getElementById("degree");
 let add = document.getElementById("btnAdd");
-let id = 3;
+let id = 4;
 var delete1;
 var edit1;
 let search = document.getElementById("search");
@@ -42,8 +42,10 @@ function studentsData(){
     
                         delete1 = document.getElementsByClassName("delete")[i];
                         delete1.addEventListener("click",function(){
+                            console.log("hello");
                             table.removeChild(tr);
-                            students.pop(students[i]);
+                            students.splice(i,1);
+                            console.log(students[i]);
                         })
 
                         edit1 = document.getElementsByClassName("edit")[i];
@@ -82,6 +84,7 @@ function studentsData(){
             if(name.value!=="" && email.value!=="" && age.value!=="" && gpa.value!=="" && degree.value!==""){
                 console.log("hello")
                 students.push({ ID: id, name: name.value, age: age.value, grade: gpa.value, degree: degree.value, email: email.value });
+                id++;
             }else{
                 alert("Fill All Inputs");
             }
